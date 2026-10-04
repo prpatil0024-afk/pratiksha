@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aurelia Care Multispeciality Hospital</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f5f9fb;
+    color: #1d2939;
+}
+
+header {
+    background: linear-gradient(135deg, #063b4c, #087f8c, #0b9aa5);
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 48px;
+    height: 48px;
+    background: white;
+    color: #087f8c;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.logo h1 {
+    font-size: 23px;
+}
+
+.logo p {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav button {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 9px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+nav button:hover {
+    background: white;
+    color: #087f8c;
+}
+
+.hero {
+    min-height: 520px;
+    background:
+        linear-gradient(rgba(3,45,57,0.78), rgba(4,94,105,0.72)),
+        url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 60px 8%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 9px 17px;
+    border-radius: 30px;
+    margin-bottom: 20px;
+}
+
+.hero h2 {
+    font-size: 54px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-btn,
+.secondary-btn {
+    padding: 14px 24px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.primary-btn {
+    background: white;
+    color: #087f8c;
+}
+
+.secondary-btn {
+    background: #0bb4b8;
+    color: white;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: white;
+    width: 86%;
+    margin: -45px auto 50px;
+    position: relative;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.stat {
+    text-align: center;
+    padding: 25px;
+    border-right: 1px solid #e5e7eb;
+}
+
+.stat:last-child {
+    border-right: none;
+}
+
+.stat h3 {
+    color: #087f8c;
+    font-size: 30px;
+}
+
+.stat p {
+    color: #667085;
+    margin-top: 5px;
+}
+
+.page {
+    display: none;
+    padding: 70px 7%;
+}
+
+.page.active {
+    display: block;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-title span {
+    color: #087f8c;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+.section-title h2 {
+    font-size: 38px;
+    margin-top: 8px;
+    color: #123642;
+}
+
+.section-title p {
+    max-width: 750px;
+    margin: 12px auto;
+    color: #667085;
+    line-height: 1.7;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-image {
+    height: 430px;
+    border-radius: 25px;
+    background:
+        linear-gradient(rgba(0,70,80,0.15), rgba(0,70,80,0.15)),
+        url("https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1000&q=80");
+    background-size: cover;
+    background-position: center;
+}
+
+.about-content h2 {
+    font-size: 40px;
+    color: #123642;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: #667085;
+    line-height: 1.9;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.about-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.about-point {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+}
+
+.about-point strong {
+    color: #087f8c;
+}
+
+.department-grid,
+.service-grid,
+.doctor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.department-card,
+.service-card,
+.doctor-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    transition: 0.3s;
+}
+
+.department-card:hover,
+.service-card:hover,
+.doctor-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.department-icon,
+.service-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.department-card h3,
+.service-card h3,
+.doctor-card h3 {
+    color: #123642;
+    margin-bottom: 10px;
+}
+
+.department-card p,
+.service-card p,
+.doctor-card p {
+    color: #667085;
+    line-height: 1.7;
+}
+
+.doctor-card {
+    text-align: center;
+}
+
+.doctor-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: auto auto 18px;
+    background-size: cover;
+    background-position: center;
+}
+
+.form-container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+}
+
+form {
+    display: grid;
+    gap: 16px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    display: grid;
+    gap: 7px;
+}
+
+label {
+    font-weight: 600;
+    color: #344054;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d0d5dd;
+    border-radius: 9px;
+    outline: none;
+    font-size: 15px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #087f8c;
+    box-shadow: 0 0 0 3px rgba(8,127,140,0.1);
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #087f8c, #0b9aa5);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    opacity: 0.9;
+}
+
+.table-container {
+    margin-top: 30px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th,
+td {
+    padding: 13px;
+    border-bottom: 1px solid #eaecf0;
+    text-align: center;
+}
+
+th {
+    background: #087f8c;
+    color: white;
+}
+
+tr:hover {
+    background: #f5fbfc;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.dashboard-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    background: #e5f7f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+}
+
+.dashboard-card h3 {
+    color: #667085;
+    font-size: 14px;
+}
+
+.dashboard-card p {
+    color: #087f8c;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.contact-card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.contact-card h3 {
+    color: #087f8c;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    color: #667085;
+    line-height: 1.6;
+}
+
+.contact-item span {
+    font-size: 24px;
+}
+
+.search-container {
+    max-width: 850px;
+    margin: auto;
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+}
+
+.search-box button {
+    background: #087f8c;
+    color: white;
+    border: none;
+    padding: 0 25px;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.search-result {
+    margin-top: 25px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    line-height: 2;
+}
+
+.message {
+    text-align: center;
+    margin-top: 15px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+.emergency {
+    background: linear-gradient(135deg, #7b1e2b, #b42318);
+    color: white;
+    padding: 45px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.emergency h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.emergency p {
+    line-height: 1.7;
+}
+
+.emergency-number {
+    font-size: 34px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+footer {
+    background: #062f3b;
+    color: white;
+    padding: 50px 7% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 35px;
+    margin-bottom: 35px;
+}
+
+.footer-column h3 {
+    margin-bottom: 15px;
+}
+
+.footer-column p,
+.footer-column li {
+    color: #b8d0d5;
+    line-height: 1.8;
+    list-style: none;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    text-align: center;
+    color: #b8d0d5;
+}
+
+@media(max-width: 900px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero h2 {
+        font-size: 40px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .department-grid,
+    .service-grid,
+    .doctor-grid,
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .about-container,
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero h2 {
+        font-size: 34px;
+    }
+
+    .stats,
+    .department-grid,
+    .service-grid,
+    .doctor-grid,
+    .dashboard-grid,
+    .form-row,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .about-content h2 {
+        font-size: 30px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box button {
+        padding: 13px;
+    }
+
+    .emergency {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+.login-screen {
+    min-height: 100vh;
+    background:
+        linear-gradient(rgba(3,45,57,0.88), rgba(4,94,105,0.88)),
+        url("https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+}
+.login-box {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(255,255,255,0.97);
+    padding: 42px;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    text-align: center;
+}
+.login-logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    background: linear-gradient(135deg,#063b4c,#0b9aa5);
+    color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    box-shadow: 0 8px 20px rgba(8,127,140,0.25);
+}
+.login-box h2 {
+    color: #123642;
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+.login-box .login-subtitle {
+    color: #667085;
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+.login-form {
+    display: grid;
+    gap: 16px;
+    text-align: left;
+}
+.login-field {
+    display: grid;
+    gap: 7px;
+}
+.login-field label {
+    font-weight: 600;
+    color: #344054;
+}
+.login-field input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d0d5dd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+.login-field input:focus {
+    border-color: #087f8c;
+    box-shadow: 0 0 0 3px rgba(8,127,140,0.1);
+}
+.login-btn {
+    margin-top: 6px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg,#087f8c,#0b9aa5);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.login-btn:hover {
+    opacity: 0.92;
+}
+.login-demo {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #eaf8f9;
+    color: #087f8c;
+    font-size: 13px;
+    line-height: 1.6;
+}
+.login-message {
+    min-height: 22px;
+    margin-top: 12px;
+    font-weight: 600;
+    text-align: center;
+}
+#appContent {
+    display: none;
+}
+.logout-btn {
+    background: rgba(180,35,24,0.9) !important;
+    border-color: rgba(255,255,255,0.5) !important;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loginScreen" class="login-screen">
+    <div class="login-box">
+        <div class="login-logo">✚</div>
+        <h2>Aurelia Care</h2>
+        <p class="login-subtitle">Hospital Management System<br>Secure Staff Login</p>
+
+        <form class="login-form" onsubmit="loginUser(event)">
+            <div class="login-field">
+                <label>Username</label>
+                <input type="text" id="loginUsername" placeholder="Enter username" required>
+            </div>
+
+            <div class="login-field">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter password" required>
+            </div>
+
+            <button class="login-btn" type="submit">Login to Hospital System</button>
+        </form>
+
+        <div id="loginMessage" class="login-message"></div>
+
+        <div class="login-demo">
+            Demo Login<br>
+            Username: <strong>admin</strong> &nbsp; | &nbsp;
+            Password: <strong>admin123</strong>
+        </div>
+    </div>
+</div>
+
+<div id="appContent">
+
+<header>
+    <div class="logo">
+        <div class="logo-icon">✚</div>
+        <div>
+            <h1>Aurelia Care</h1>
+            <p>Multispeciality Hospital & Research Centre</p>
+        </div>
+    </div>
+
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('about')">About</button>
+        <button onclick="showPage('departments')">Departments</button>
+        <button onclick="showPage('doctors')">Doctors</button>
+        <button onclick="showPage('appointment')">Appointment</button>
+        <button onclick="showPage('management')">Management</button>
+        <button onclick="showPage('dashboard')">Dashboard</button>
+        <button onclick="showPage('contact')">Contact</button>
+        <button class="logout-btn" onclick="logoutUser()">Logout</button>
+    </nav>
+</header>
+
+<section id="home" class="page active">
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">✦ Advanced Healthcare • Compassionate Care</div>
+            <h2>Where Advanced Medicine Meets Human Care</h2>
+            <p>
+                Aurelia Care Multispeciality Hospital is a modern healthcare
+                destination dedicated to providing advanced medical treatment,
+                expert clinical care and a comfortable healing environment
+                for every patient and family.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="showPage('appointment')">
+                    Book an Appointment
+                </button>
+
+                <button class="secondary-btn" onclick="showPage('about')">
+                    Discover Our Hospital
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <h3>15+</h3>
+            <p>Years of Excellence</p>
+        </div>
+
+        <div class="stat">
+            <h3>120+</h3>
+            <p>Expert Doctors</p>
+        </div>
+
+        <div class="stat">
+            <h3>50K+</h3>
+            <p>Patients Served</p>
+        </div>
+
+        <div class="stat">
+            <h3>24/7</h3>
+            <p>Emergency Services</p>
+        </div>
+    </div>
+
+    <div class="section-title">
+        <span>Our Services</span>
+        <h2>Complete Healthcare Under One Roof</h2>
+        <p>
+            We combine medical expertise, modern technology and patient-focused
+            services to provide a complete healthcare experience.
+        </p>
+    </div>
+
+    <div class="service-grid">
+        <div class="service-card">
+            <div class="service-icon">🚑</div>
+            <h3>24/7 Emergency</h3>
+            <p>Round-the-clock emergency care supported by experienced medical teams and modern facilities.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🫀</div>
+            <h3>Advanced Cardiac Care</h3>
+            <p>Comprehensive cardiac consultation, diagnostics and treatment for heart-related conditions.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🧠</div>
+            <h3>Neurology</h3>
+            <p>Specialized diagnosis and treatment for neurological and brain-related disorders.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">👶</div>
+            <h3>Mother & Child Care</h3>
+            <p>Dedicated maternity, newborn and pediatric services for families at every stage.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">🧪</div>
+            <h3>Diagnostic Laboratory</h3>
+            <p>Reliable laboratory investigations with modern diagnostic equipment and trained professionals.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="service-icon">💊</div>
+            <h3>24/7 Pharmacy</h3>
+            <p>Convenient access to prescribed medicines and essential healthcare products.</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="page">
+    <div class="section-title">
+        <span>About Aurelia Care</span>
+        <h2>Healthcare Built Around People</h2>
+        <p>
+            A trusted healthcare institution combining clinical excellence,
+            technology, compassion and continuous improvement.
+        </p>
+    </div>
+
+    <div class="about-container">
+        <div class="about-image"></div>
+
+        <div class="about-content">
+            <h2>A Legacy of Care, A Future of Innovation</h2>
+
+            <p>
+                Aurelia Care Multispeciality Hospital & Research Centre is a
+                comprehensive healthcare institution created with a simple
+                vision: to make quality healthcare accessible, dependable and
+                patient-centered.
+            </p>
+
+            <p>
+                Our hospital brings together experienced specialists,
+                qualified nurses, trained technicians and dedicated support
+                teams who work together to provide coordinated medical care.
+                From preventive health consultations to advanced treatments,
+                every service is designed around the needs and comfort of
+                our patients.
+            </p>
+
+            <p>
+                We continuously adopt modern medical technology, digital
+                healthcare solutions and evidence-based clinical practices.
+                Our facilities are designed to support accurate diagnosis,
+                efficient treatment and a safe recovery environment.
+            </p>
+
+            <p>
+                At Aurelia Care, we believe that healthcare is not only about
+                treating illness. It is about listening to patients, supporting
+                families, encouraging preventive care and creating a healthcare
+                experience based on dignity, trust and respect.
+            </p>
+
+            <div class="about-points">
+                <div class="about-point">
+                    <strong>✓ Patient First</strong>
+                    <p>Every decision begins with patient safety and comfort.</p>
+                </div>
+
+                <div class="about-point">
+                    <strong>✓ Modern Technology</strong>
+                    <p>Advanced equipment supports accurate diagnosis and care.</p>
+                </div>
+
+                <div class="about-point">
+                    <strong>✓ Expert Specialists</strong>
+                    <p>Multidisciplinary teams provide specialized treatment.</p>
+                </div>
+
+                <div class="about-point">
+                    <strong>✓ Trusted Care</strong>
+                    <p>Transparent and compassionate healthcare for families.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="departments" class="page">
+    <div class="section-title">
+        <span>Clinical Departments</span>
+        <h2>Specialized Care For Every Need</h2>
+        <p>
+            Our multidisciplinary departments work together to provide
+            coordinated and comprehensive medical care.
+        </p>
+    </div>
+
+    <div class="department-grid">
+        <div class="department-card">
+            <div class="department-icon">❤️</div>
+            <h3>Cardiology</h3>
+            <p>Heart health, cardiac diagnosis, preventive care and specialized cardiac treatment.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🧠</div>
+            <h3>Neurology</h3>
+            <p>Specialized neurological consultation, diagnosis and treatment.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🦴</div>
+            <h3>Orthopedics</h3>
+            <p>Bone, joint, muscle and rehabilitation services for patients of all ages.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">👩‍⚕️</div>
+            <h3>Gynecology</h3>
+            <p>Comprehensive women's healthcare, maternity and reproductive health services.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">👶</div>
+            <h3>Pediatrics</h3>
+            <p>Specialized healthcare services for infants, children and adolescents.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🫁</div>
+            <h3>Pulmonology</h3>
+            <p>Diagnosis and management of respiratory and lung-related conditions.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🧴</div>
+            <h3>Dermatology</h3>
+            <p>Medical and clinical care for skin, hair and nail conditions.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🧪</div>
+            <h3>Pathology</h3>
+            <p>Laboratory investigations supporting accurate clinical diagnosis.</p>
+        </div>
+
+        <div class="department-card">
+            <div class="department-icon">🏥</div>
+            <h3>General Medicine</h3>
+            <p>Comprehensive consultation and management for common medical conditions.</p>
+        </div>
+    </div>
+</section>
+
+<section id="doctors" class="page">
+    <div class="section-title">
+        <span>Our Specialists</span>
+        <h2>Meet Our Medical Experts</h2>
+        <p>
+            Experienced professionals committed to delivering ethical,
+            compassionate and evidence-based healthcare.
+        </p>
+    </div>
+
+    <div class="doctor-grid">
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Arjun Mehta</h3>
+            <p>Senior Cardiologist</p>
+            <p>18 Years Experience</p>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Ananya Rao</h3>
+            <p>Neurologist</p>
+            <p>14 Years Experience</p>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Rohan Kulkarni</h3>
+            <p>Orthopedic Surgeon</p>
+            <p>16 Years Experience</p>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Meera Shah</h3>
+            <p>Gynecologist</p>
+            <p>12 Years Experience</p>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1638202993928-7d113b8f11b8?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Vikram Joshi</h3>
+            <p>Pulmonologist</p>
+            <p>15 Years Experience</p>
+        </div>
+
+        <div class="doctor-card">
+            <div class="doctor-image" style="background-image:url('https://images.unsplash.com/photo-1594824475545-9d8e7e8a9b4b?auto=format&fit=crop&w=300&q=80')"></div>
+            <h3>Dr. Kavya Deshmukh</h3>
+            <p>Pediatrician</p>
+            <p>10 Years Experience</p>
+        </div>
+    </div>
+</section>
+
+<section id="appointment" class="page">
+    <div class="section-title">
+        <span>Patient Services</span>
+        <h2>Book Your Appointment</h2>
+        <p>
+            Schedule a consultation with our medical specialists.
+        </p>
+    </div>
+
+    <div class="form-container">
+        <form onsubmit="bookAppointment(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text" id="appointmentPatient" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="appointmentMobile" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Select Department</label>
+                    <select id="appointmentDepartment" required>
+                        <option value="">Select Department</option>
+                        <option>Cardiology</option>
+                        <option>Neurology</option>
+                        <option>Orthopedics</option>
+                        <option>Gynecology</option>
+                        <option>Pediatrics</option>
+                        <option>Pulmonology</option>
+                        <option>Dermatology</option>
+                        <option>General Medicine</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Doctor</label>
+                    <select id="appointmentDoctor" required>
+                        <option value="">Select Doctor</option>
+                        <option>Dr. Arjun Mehta</option>
+                        <option>Dr. Ananya Rao</option>
+                        <option>Dr. Rohan Kulkarni</option>
+                        <option>Dr. Meera Shah</option>
+                        <option>Dr. Vikram Joshi</option>
+                        <option>Dr. Kavya Deshmukh</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Appointment Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Appointment Time</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Reason for Visit</label>
+                <textarea id="appointmentReason" required></textarea>
+            </div>
+
+            <button class="submit-btn" type="submit">Confirm Appointment</button>
+        </form>
+
+        <div id="appointmentMessage" class="message"></div>
+    </div>
+</section>
+
+<section id="management" class="page">
+    <div class="section-title">
+        <span>Hospital Management</span>
+        <h2>Healthcare Management System</h2>
+        <p>
+            Manage patient information, medical records, prescriptions,
+            laboratory reports and billing information.
+        </p>
+    </div>
+
+    <div class="form-container">
+        <h3 style="color:#087f8c;margin-bottom:20px;">Add Patient</h3>
+
+        <form onsubmit="addPatient(event)">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Patient Name</label>
+                    <input type="text" id="patientName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Age</label>
+                    <input type="number" id="patientAge" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Gender</label>
+                    <select id="patientGender" required>
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Mobile</label>
+                    <input type="tel" id="patientMobile" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <textarea id="patientAddress" required></textarea>
+            </div>
+
+            <button class="submit-btn" type="submit">Add Patient</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                </tr>
+            </thead>
+            <tbody id="patientTable"></tbody>
+        </table>
+    </div>
+</section>
+
+<section id="dashboard" class="page">
+    <div class="section-title">
+        <span>Hospital Overview</span>
+        <h2>Management Dashboard</h2>
+        <p>
+            A quick overview of the hospital management system.
+        </p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <div class="dashboard-icon">🧑</div>
+            <div>
+                <h3>Total Patients</h3>
+                <p id="patientCount">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">👨‍⚕️</div>
+            <div>
+                <h3>Doctors</h3>
+                <p>120+</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">📅</div>
+            <div>
+                <h3>Appointments</h3>
+                <p id="appointmentCount">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">📋</div>
+            <div>
+                <h3>Medical Records</h3>
+                <p id="recordCount">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">💊</div>
+            <div>
+                <h3>Prescriptions</h3>
+                <p id="prescriptionCount">0</p>
+            </div>
+        </div>
+
+        <div class="dashboard-card">
+            <div class="dashboard-icon">🧪</div>
+            <div>
+                <h3>Lab Tests</h3>
+                <p id="testCount">0</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="page">
+    <div class="section-title">
+        <span>Get In Touch</span>
+        <h2>Contact Aurelia Care</h2>
+        <p>
+            Our support team is available to assist patients and families
+            with appointments, departments and general hospital information.
+        </p>
+    </div>
+
+    <div class="contact-grid">
+        <div class="contact-card">
+            <h3>Hospital Information</h3>
+
+            <div class="contact-item">
+                <span>📍</span>
+                <div>
+                    <strong>Address</strong><br>
+                    Aurelia Care Multispeciality Hospital,<br>
+                    Central Healthcare Avenue,<br>
+                    Maharashtra, India
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span>📞</span>
+                <div>
+                    <strong>Emergency</strong><br>
+                    +91 1800 123 4567
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span>✉️</span>
+                <div>
+                    <strong>Email</strong><br>
+                    care@aureliacarehospital.com
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <span>🕐</span>
+                <div>
+                    <strong>Hospital Hours</strong><br>
+                    Emergency: 24 Hours<br>
+                    OPD: 8:00 AM – 8:00 PM
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-card">
+            <h3>Send an Enquiry</h3>
+
+            <form onsubmit="sendMessage(event)">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="contactName" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="contactEmail" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea id="contactMessage" required></textarea>
+                </div>
+
+                <button class="submit-btn" type="submit">Send Enquiry</button>
+            </form>
+
+            <div id="contactMessageResult" class="message"></div>
+        </div>
+    </div>
+</section>
+
+<div class="emergency">
+    <div>
+        <h2>🚨 Medical Emergency?</h2>
+        <p>
+            Our emergency department operates 24 hours a day, 7 days a week.
+            For urgent medical assistance, contact our emergency care team.
+        </p>
+    </div>
+
+    <div class="emergency-number">
+        +91 1800 123 4567
+    </div>
+</div>
+
+<footer>
+    <div class="footer-grid">
+        <div class="footer-column">
+            <h3>Aurelia Care</h3>
+            <p>
+                Aurelia Care Multispeciality Hospital & Research Centre
+                is committed to delivering compassionate, modern and
+                patient-focused healthcare.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Departments</li>
+                <li>Doctors</li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Patient Services</h3>
+            <ul>
+                <li>Appointments</li>
+                <li>Emergency Care</li>
+                <li>Laboratory</li>
+                <li>Pharmacy</li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>Contact</h3>
+            <ul>
+                <li>+91 1800 123 4567</li>
+                <li>care@aureliacarehospital.com</li>
+                <li>Maharashtra, India</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Aurelia Care Multispeciality Hospital. All Rights Reserved.
+    </div>
+</footer>
+
+</div>
+
+<script>
+let patients = [];
+let appointments = [];
+let records = [];
+let prescriptions = [];
+let tests = [];
+
+
+function loginUser(event) {
+    event.preventDefault();
+
+    let username = document.getElementById("loginUsername").value.trim();
+    let password = document.getElementById("loginPassword").value;
+
+    if (username === "admin" && password === "admin123") {
+        document.getElementById("loginScreen").style.display = "none";
+        document.getElementById("appContent").style.display = "block";
+        document.getElementById("loginMessage").innerText = "";
+        document.getElementById("loginUsername").value = "";
+        document.getElementById("loginPassword").value = "";
+    } else {
+        document.getElementById("loginMessage").innerText =
+            "✕ Invalid username or password.";
+        document.getElementById("loginMessage").style.color = "#b42318";
+    }
+}
+
+function logoutUser() {
+    document.getElementById("appContent").style.display = "none";
+    document.getElementById("loginScreen").style.display = "flex";
+    document.getElementById("loginUsername").value = "";
+    document.getElementById("loginPassword").value = "";
+    document.getElementById("loginMessage").innerText = "";
+}
+
+function showPage(pageId) {
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function bookAppointment(event) {
+    event.preventDefault();
+
+    let appointment = {
+        patient: document.getElementById("appointmentPatient").value,
+        mobile: document.getElementById("appointmentMobile").value,
+        department: document.getElementById("appointmentDepartment").value,
+        doctor: document.getElementById("appointmentDoctor").value,
+        date: document.getElementById("appointmentDate").value,
+        time: document.getElementById("appointmentTime").value,
+        reason: document.getElementById("appointmentReason").value
+    };
+
+    appointments.push(appointment);
+
+    document.getElementById("appointmentMessage").innerHTML =
+        "✓ Appointment confirmed successfully for " +
+        appointment.patient +
+        " with " +
+        appointment.doctor +
+        ".";
+
+    event.target.reset();
+
+    updateDashboard();
+}
+
+function addPatient(event) {
+    event.preventDefault();
+
+    let patient = {
+        name: document.getElementById("patientName").value,
+        age: document.getElementById("patientAge").value,
+        gender: document.getElementById("patientGender").value,
+        mobile: document.getElementById("patientMobile").value,
+        address: document.getElementById("patientAddress").value
+    };
+
+    patients.push(patient);
+
+    displayPatients();
+
+    event.target.reset();
+
+    alert("Patient added successfully.");
+
+    updateDashboard();
+}
+
+function displayPatients() {
+    let table = document.getElementById("patientTable");
+
+    table.innerHTML = "";
+
+    patients.forEach(function(patient, index) {
+        table.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${patient.name}</td>
+                <td>${patient.age}</td>
+                <td>${patient.gender}</td>
+                <td>${patient.mobile}</td>
+            </tr>
+        `;
+    });
+}
+
+function sendMessage(event) {
+    event.preventDefault();
+
+    document.getElementById("contactMessageResult").innerHTML =
+        "✓ Thank you. Your enquiry has been submitted successfully.";
+
+    event.target.reset();
+}
+
+function updateDashboard() {
+    document.getElementById("patientCount").innerText = patients.length;
+    document.getElementById("appointmentCount").innerText = appointments.length;
+    document.getElementById("recordCount").innerText = records.length;
+    document.getElementById("prescriptionCount").innerText = prescriptions.length;
+    document.getElementById("testCount").innerText = tests.length;
+}
+
+updateDashboard();
+</script>
+
+</body>
+</html>
